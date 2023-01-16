@@ -1,0 +1,13 @@
+﻿@namespace Perpustakaan.Shared.Components
+@using Color = MudBlazor.Color
+<MudCard Elevation="0" Square="true" Class="@Class">
+    <MudCardHeader>
+        <CardHeaderAvatar>
+            <MudAvatar Image="@ImageDataUrl" Style="height: 50px; width: 50px;"> </MudAvatar>
+        </CardHeaderAvatar>
+        <CardHeaderContent>
+            <MudText Typo="Typo.body2">@Name</MudText>
+            <MudText Typo="Typo.caption">@Username</MudText>
+        </CardHeaderContent>
+    </MudCardHeader>
+</MudCard>

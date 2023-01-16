@@ -1,0 +1,56 @@
+﻿@using Color = MudBlazor.Color
+
+    <EditForm Model="@CategoryModel" OnValidSubmit="SaveAsync">
+    <FluentValidationValidator @ref="_fluentValidationValidator"/>
+        <MudDialog>
+            <TitleContent>
+                @{
+                    if (CategoryModel.ID == 0)
+                    {
+                        <MudText Typo="Typo.h6">
+                            <MudIcon Icon="@Icons.Material.Filled.Add" Class="mr-3 mb-n1" />
+                            Add Category
+                        </MudText>
+                    }
+                    else
+                    {
+                        <MudText Typo="Typo.h6">
+                            <MudIcon Icon="@Icons.Material.Filled.Update" Class="mr-3 mb-n1" />
+                            Update Category
+                        </MudText>
+                    }
+                }
+            </TitleContent>
+            <DialogContent>
+              
+                <MudGrid>
+                    @if (CategoryModel.ID != 0)
+                    {
+                        <MudItem xs="12" md="6">
+                            <MudTextField Disabled For="@(() => CategoryModel.ID)" @bind-Value="CategoryModel.ID" Label="ID"/>
+                        </MudItem>
+                    }
+                    <MudItem xs="12" md="6">
+                        <MudTextField T="string" For="@(() => CategoryModel.Nama)" @bind-Value="CategoryModel.Nama" Label="Nama Kategori"/>
+                    </MudItem>
+                    <MudItem xs="12" md="6">
+                        <MudTextField For="@(() => CategoryModel.Deskripsi)" @bind-Value="CategoryModel.Deskripsi" Label="Deskripsi"/>
+                    </MudItem>
+
+                </MudGrid>
+            </DialogContent>
+            <DialogActions>
+                <MudButton DisableElevation Variant="Variant.Filled" OnClick="Cancel">Cancel</MudButton>
+                @if (CategoryModel.ID != 0)
+                {
+                <MudButton DisableElevation Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Secondary">Update</MudButton>
+                }
+                else
+                {
+                <MudButton DisableElevation Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Success">Save</MudButton>
+                }
+            </DialogActions>
+        </MudDialog>
+    </EditForm>
+
+

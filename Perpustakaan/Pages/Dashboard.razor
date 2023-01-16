@@ -1,0 +1,90 @@
+﻿@layout MainLayout
+@page "/Dashboard"
+@attribute [Authorize(Roles = "Admin,Staff")]
+<MudGrid>
+    <MudItem md="6">
+        <MudCard Outlined="true">
+            <MudCardContent>
+                <MudText></MudText>
+                <ApexCharts.ApexChart TItem="BookVM" Options="options"
+                                          Title="Book by Category">
+
+                        <ApexPointSeries TItem="BookVM"
+                                     Items="_bookList"
+                                         Name="Number of Book"
+                                         XValue="@(e => e.Category.Nama)"
+                                         YAggregate="@(e=> e.Count())"
+                                         SeriesType="SeriesType.Bar" />
+
+
+                    </ApexCharts.ApexChart>
+
+              
+
+            </MudCardContent>
+        </MudCard>
+    </MudItem>
+    <MudItem md="6">
+        <MudCard Outlined="true">
+            <MudCardContent>
+                <MudText></MudText>
+                <ApexCharts.ApexChart TItem="BookVM" Options="options2"
+                                      Title="Book by Publisher">
+
+                    <ApexPointSeries TItem="BookVM"
+                                     Items="_bookList"
+                                     Name="Number of Book"
+                                     XValue="@(e => e.Penerbit)"
+                                     YAggregate="@(e=> e.Count())"
+                                     SeriesType="SeriesType.Bar" />
+
+
+                </ApexCharts.ApexChart>
+
+            </MudCardContent>
+        </MudCard>
+    </MudItem>
+    <MudItem md="6">
+        <MudCard Outlined="true">
+            <MudCardContent>
+                <MudText></MudText>
+                <ApexCharts.ApexChart TItem="BookVM" Options="options3"
+                                      Title="Book by Category">
+
+                    <ApexPointSeries TItem="BookVM"
+                                     Items="_bookList"
+                                     SeriesType="SeriesType.Donut"
+                                     Name="Number of Book"
+                                     XValue="@(e => e.Category.Nama)"
+                                     YAggregate="@(e=> e.Count())"/>
+
+
+                </ApexCharts.ApexChart>
+
+              
+
+            </MudCardContent>
+        </MudCard>
+    </MudItem>
+    <MudItem md="6">
+        <MudCard Outlined="true">
+            <MudCardContent>
+                <MudText></MudText>
+                <ApexCharts.ApexChart TItem="BookVM" Options="options4"
+                                      Title="Book by Publisher">
+
+                    <ApexPointSeries TItem="BookVM"
+                                     Items="_bookList"
+                                     SeriesType="SeriesType.Donut"
+                                     Name="Number of Book"
+                                     XValue="@(e => e.Penerbit)"
+                                     YAggregate="@(e=> e.Count())"/>
+
+
+                </ApexCharts.ApexChart>
+
+            </MudCardContent>
+        </MudCard>
+    </MudItem>
+</MudGrid>
+

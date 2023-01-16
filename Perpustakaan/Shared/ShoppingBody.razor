@@ -1,0 +1,26 @@
+﻿@using Color = MudBlazor.Color
+
+<AppBar/>
+@*<MudDrawer  Elevation="25" ClipMode="DrawerClipMode.Always">
+    <NavMenu />
+</MudDrawer>*@
+<MudMainContent>
+    <MudContainer MaxWidth="MaxWidth.False" Class="mt-4">
+        @ChildContent
+       
+    </MudContainer>
+</MudMainContent>
+<div class="footerUpperImage">
+    <img class="img-responsive lozad" data-src="/images/footer-win.png" alt="footer Upper Image" src="/images/footer-win.png" data-loaded="true">
+</div>
+<style>
+    .footerUpperImage {
+        margin-top: 70px;
+        text-align: center;
+        background-color: #333;
+    }
+    .img-responsive {
+        max-width: 100%;
+    }
+
+</style>

@@ -1,0 +1,49 @@
+﻿@using Color = MudBlazor.Color
+@using System.Security.Claims
+
+<UserCard />
+<MudNavMenu>
+    <MudNavLink Href="/" Match="NavLinkMatch.All" Icon="@Icons.Material.Outlined.Home">Home</MudNavLink>
+    
+    <MudListSubheader Class="mt-2 mb-n2">Personal</MudListSubheader>
+    <AuthorizeView Roles="Admin, Staff">
+        <MudNavLink Href="/dashboard" Icon="@Icons.Material.Outlined.Dashboard">
+            Dashboard
+        </MudNavLink>
+    </AuthorizeView>
+
+    <MudNavLink Href="/account" Icon="@Icons.Material.Outlined.SupervisorAccount">
+        Account
+    </MudNavLink>
+
+
+    <AuthorizeView Roles="Admin, Staff">
+
+        <MudListSubheader Class="mt-2 mb-n2">Administrator</MudListSubheader>
+
+        <MudNavLink Href="/UserProfile/users" Icon="@Icons.Material.Outlined.Person">
+            Users
+        </MudNavLink>
+      
+    </AuthorizeView>
+    <AuthorizeView Roles="Admin, Staff">
+        <MudListSubheader Class="mt-2 mb-n2">Catalog Management</MudListSubheader>
+
+        <MudNavLink Href="/catalog/books" Icon="@Icons.Material.Outlined.Book">
+            Daftar Buku
+        </MudNavLink>
+
+
+        <MudNavLink Href="/catalog/categories" Icon="@Icons.Material.Outlined.Category">
+            Daftar Kategory
+        </MudNavLink>
+    </AuthorizeView>
+        
+      
+</MudNavMenu>
+
+@code {
+   
+
+   
+}

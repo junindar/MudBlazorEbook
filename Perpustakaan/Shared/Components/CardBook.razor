@@ -1,0 +1,76 @@
+﻿@using Color = MudBlazor.Color
+@if (IsShowTab)
+{
+    <MudTabs Elevation="2" Rounded="true" Color="Color.Dark" PanelClass="pa-6">
+        <MudTabPanel Text="Teknologi" @onclick="@(() => ShowBookCategoryAsync("Teknologi"))">
+
+        </MudTabPanel>
+        <MudTabPanel Text="Agama" @onclick="@(() => ShowBookCategoryAsync("Agama"))">
+
+        </MudTabPanel>
+        <MudTabPanel Text="Bahasa" @onclick="@(() => ShowBookCategoryAsync("Bahasa"))">
+
+        </MudTabPanel>
+        <MudTabPanel Text="Sosial" @onclick="@(() => ShowBookCategoryAsync("Sosial"))">
+
+        </MudTabPanel>
+    </MudTabs>
+}
+
+
+@if (Books == null || !Books.Any())
+{
+    <NoResultBox SearchParameter="@CategoryName" StyleParameter="margin-top: 10px;"></NoResultBox>
+
+}
+else
+{
+
+    <MudGrid>
+        @foreach (var book in Books)
+        {
+
+            <MudItem xs="3">
+
+                <MudCard Height="420px!important">
+
+                    <MudLink @onclick="@(() => GoToDetail(@book.ID))" Underline="Underline.None" Style="cursor: pointer;">
+                        <MudCardMedia Image="@book.Gambar" Height="200" />
+
+                        <MudCardContent style="height: 160px !important;">
+                            <MudText Typo="Typo.h6" Color="Color.Warning">@book.Judul</MudText>
+                            <MudText Typo="Typo.body2" Color="Color.Info">@book.Penulis</MudText>
+                            <MudText Typo="Typo.body2" Color="Color.Info">@book.Penerbit</MudText>
+                        </MudCardContent>
+                    </MudLink>
+                    <AuthorizeView>
+                        <Authorized>
+                            @{
+                                if (book.Status)
+                                {
+                                    <MudCardActions>
+                                    <MudButton  Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.ShoppingCart"
+                                                Color="Color.Warning"
+                                   data-bukuId="@book.ID"
+                                   data-bukuImage="@book.Gambar"
+                                   data-bukuJudul="@book.Judul"
+                                   data-bukuPenulis="@book.Penulis">Add To Cart</MudButton>
+
+                                    </MudCardActions>
+                                }
+                            }
+                        </Authorized>
+                    </AuthorizeView>
+
+
+                </MudCard>
+
+            </MudItem>
+
+
+
+
+        }
+    </MudGrid>
+
+}

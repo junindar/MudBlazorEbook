@@ -1,0 +1,73 @@
+﻿@layout ShoppingLayout
+@page "/bookdetail/{BookId}"
+@using Color = MudBlazor.Color
+<MudCard Style="margin-top: 80px;margin-right: 200px;margin-left:200px">
+    <MudCardHeader  Color="#grey" >
+        <CardHeaderContent>
+            <MudText Typo="Typo.h4">@BookModel.Judul</MudText>
+        </CardHeaderContent>
+    </MudCardHeader>
+    <MudCardContent>
+        <MudGrid>
+            <MudItem xs="2" >
+                <MudImage Src="@($"{BookModel.Gambar}")" ObjectFit="ObjectFit.Fill" Width="150" Height="200" Elevation="25" Style="margin: 0px!important;" />
+            </MudItem>
+            <MudItem xs="6" >
+                <MudGrid>
+                    <MudItem xs="4" >
+                        <label>Penulis</label>
+                    </MudItem>
+                    <MudItem xs="8" >
+                        <label >@BookModel.Penulis</label>
+                    </MudItem>
+                    <MudItem xs="4" >
+                        <label >Category</label>
+                    </MudItem>
+                    <MudItem xs="8">
+                        <label>@NamaCategory</label>
+                    </MudItem>
+                    <MudItem xs="4" >
+                        <label>Penerbit</label>
+                    </MudItem>
+                    <MudItem xs="8" >
+                        <label>@BookModel.Penerbit</label>
+                    </MudItem>
+                    <MudItem xs="4">
+                        <label>Status</label>
+                    </MudItem>
+                    <MudItem xs="8">
+                       
+                        @if (BookModel.Status)
+                        {
+                            <label >Available</label>
+                        }
+                        else
+                        {
+                            <label >Not Available</label>
+
+                        }
+                       
+                    </MudItem>
+                </MudGrid>
+              
+            </MudItem>
+            <MudItem xs="4" ></MudItem>
+        </MudGrid>
+    </MudCardContent>
+    <MudCardHeader>
+        <CardHeaderContent>
+            <MudText Typo="Typo.body1">@BookModel.Deskripsi</MudText>
+        </CardHeaderContent>
+    </MudCardHeader>
+</MudCard>
+
+@*<MudCard Style="margin-top: 30px;margin-right: 200px; margin-left: 200px">
+    <MudCardContent>
+        <div class="row">
+            <CardBook CategoryName=@NamaCategory BookId="@BookModel.ID"></CardBook>
+        </div>
+    </MudCardContent>
+</MudCard>*@
+<div class="row" Style="margin-top: 30px;margin-right: 200px; margin-left: 200px">
+    <CardBook IsShowTab="false" CategoryName=@NamaCategory BookId="@BookModel.ID"></CardBook>
+</div>

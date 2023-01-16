@@ -1,0 +1,26 @@
+﻿@using System.Net.Http
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.AspNetCore.Components.Routing
+@using Microsoft.AspNetCore.Components.Web
+@using Microsoft.AspNetCore.Components.Web.Virtualization
+@using Microsoft.JSInterop
+@using Perpustakaan
+@using Perpustakaan.Shared
+@using MudBlazor
+@using ApexCharts
+@using Perpustakaan.Model
+@using Perpustakaan.AppSettings
+@using Perpustakaan.Shared.Components
+@using DataService.Entities;
+@using DataService.IService;
+@using DataService.Service;
+@using Blazored.FluentValidation
+@using Perpustakaan.Pages
+@using Perpustakaan.Pages.Authentication
+@using Perpustakaan.Pages.Catalog
+
+@inject ISnackbar _snackBar
+@inject IDialogService _dialogService
+@inject NavigationManager _navigationManager

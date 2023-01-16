@@ -1,0 +1,80 @@
+﻿@page "/UserProfile/users"
+@using Color = MudBlazor.Color
+<style>
+    .mud-table-container {
+        overflow: auto;
+    }
+</style>
+<BodyTitle Title="USers" Description="Manage Users." />
+
+@if (!_loaded)
+{
+    <MudProgressCircular Color="Color.Primary" Indeterminate="true" />
+}
+else
+{
+
+    <MudTable Hover="true" Elevation="25" Items="_userList" Filter="new Func<UserVM, bool>(Filter)" @bind-category="_user">
+        <ToolBarContent>
+            <div class="justify-center mud-text-align-center">
+
+                <MudButton DisableElevation Variant="Variant.Filled" Color="Color.Primary" OnClick="(() => InvokeModal())" StartIcon="@Icons.Material.Filled.Add" IconColor="Color.Surface">Create</MudButton>
+                  
+              
+
+                <MudButton DisableElevation Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Refresh" OnClick="GetUsersAsync" IconColor="Color.Surface" Color="Color.Secondary" Style="margin-left: 5px;">Refresh</MudButton>
+                 
+              
+               
+                  
+            </div>
+            <MudSpacer />
+           
+            <MudTextField @bind-Value="_searchString" Immediate="true" Placeholder="Search for Users" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0 mb-3"></MudTextField>
+            
+        </ToolBarContent>
+        <HeaderContent>
+           @* <MudTh><MudTableSortLabel SortBy="new Func<UserVM, object>(x => x.ID)">Id</MudTableSortLabel></MudTh>*@
+            <MudTh><MudTableSortLabel SortBy="new Func<UserVM, object>(x => x.Username)">Username</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<UserVM, object>(x => x.Nama)">Nama</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<UserVM, object>(x => x.Role)">Role</MudTableSortLabel></MudTh>
+           
+           <MudTh>Status</MudTh>
+          
+          
+            <MudTh Style="text-align:right">Actions</MudTh>
+        </HeaderContent>
+        <RowTemplate>
+           @* <MudTd DataLabel="ID">@context.ID</MudTd>*@
+            <MudTd DataLabel="Username">
+                <MudHighlighter Text="@context.Username" HighlightedText="@_searchString" />
+            </MudTd>
+            <MudTd DataLabel="Nama">
+                <MudHighlighter Text="@context.Nama" HighlightedText="@_searchString" />
+            </MudTd>
+            <MudTd DataLabel="Role">
+                <MudHighlighter Text="@context.Role" HighlightedText="@_searchString" />
+            </MudTd>
+         
+            <MudTd DataLabel="Status">
+                <MudHighlighter Text="@context.Status.ToString()"  />
+            </MudTd>
+           
+            <MudTd DataLabel="Actions" Style="text-align: right">
+              
+                <MudMenu Label="Actions" Variant="Variant.Filled" DisableElevation="true" EndIcon="@Icons.Filled.KeyboardArrowDown" IconColor="Color.Secondary" Direction="Direction.Left" OffsetX="true">
+
+                    <MudMenuItem @onclick="@(() => InvokeModal(@context.ID))">Edit</MudMenuItem>
+                       
+                    <MudMenuItem @onclick="@(() => Delete(@context.ID))">Delete</MudMenuItem>
+                       
+                </MudMenu>
+               
+               
+            </MudTd>
+        </RowTemplate>
+        <PagerContent>
+            <Pager />
+        </PagerContent>
+    </MudTable>
+}

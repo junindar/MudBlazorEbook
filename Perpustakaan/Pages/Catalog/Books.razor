@@ -1,0 +1,87 @@
+﻿@page "/catalog/books"
+@using Color = MudBlazor.Color
+@attribute [Authorize(Roles = "Admin")]
+<style>
+    .mud-table-container {
+        overflow: auto;
+    }
+</style>
+<BodyTitle Title="Books" Description="Manage Books." />
+
+@if (!_loaded)
+{
+    <MudProgressCircular Color="Color.Primary" Indeterminate="true" />
+}
+else
+{
+   
+    <MudTable Hover="true" Elevation="25" Items="_bookList" Filter="new Func<BookVM, bool>(Filter)" @bind-category="_book">
+        <ToolBarContent>
+            <div class="justify-center mud-text-align-center">
+
+                <MudButton DisableElevation Variant="Variant.Filled" Color="Color.Primary" OnClick="(() => InvokeModal())" StartIcon="@Icons.Material.Filled.Add" IconColor="Color.Surface">Create</MudButton>
+                  
+                <MudButton DisableElevation Variant="Variant.Filled" Color="Color.Primary"  StartIcon="@Icons.Material.Filled.FileUpload" IconColor="Color.Surface" Style="margin-left: 5px;">Import</MudButton>
+                   
+
+                <MudButton DisableElevation Variant="Variant.Filled"  StartIcon="@Icons.Material.Filled.Refresh"  OnClick="GetBooksAsync" IconColor="Color.Surface" Color="Color.Secondary" Style="margin-left: 5px;">Refresh</MudButton>
+                 
+                <MudButton DisableElevation Variant="Variant.Filled"  StartIcon="@Icons.Custom.FileFormats.FileExcel" IconColor="Color.Secondary" Color="Color.Surface" Style="margin-left: 5px;">Export</MudButton>
+                   
+               
+                  
+            </div>
+            <MudSpacer />
+           
+            <MudTextField @bind-Value="_searchString" Immediate="true" Placeholder="Search for Books" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0 mb-3"></MudTextField>
+            
+        </ToolBarContent>
+        <HeaderContent>
+            <MudTh><MudTableSortLabel SortBy="new Func<BookVM, object>(x => x.ID)">Id</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<BookVM, object>(x => x.Judul)">Judul</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<BookVM, object>(x => x.Penulis)">Penulis</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<BookVM, object>(x => x.Penerbit)">Penerbit</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<BookVM, object>(x => x.Category.Nama)">Kategori</MudTableSortLabel></MudTh>
+           <MudTh>Status</MudTh>
+            <MudTh>Image</MudTh>
+          
+            <MudTh Style="text-align:right">Actions</MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd DataLabel="ID">@context.ID</MudTd>
+            <MudTd DataLabel="Judul">
+                <MudHighlighter Text="@context.Judul" HighlightedText="@_searchString" />
+            </MudTd>
+            <MudTd DataLabel="Penulis">
+                <MudHighlighter Text="@context.Penulis" HighlightedText="@_searchString" />
+            </MudTd>
+            <MudTd DataLabel="Penerbit">
+                <MudHighlighter Text="@context.Penerbit" HighlightedText="@_searchString" />
+            </MudTd>
+            <MudTd DataLabel="Kategori">
+                <MudHighlighter Text="@context.Category.Nama" HighlightedText="@_searchString" />
+            </MudTd>
+            <MudTd DataLabel="Status">
+                <MudHighlighter Text="@context.Status.ToString()"  />
+            </MudTd>
+            <MudTd DataLabel="Gambar">
+                <MudAvatar Image="@context.Gambar" Color="Color.Info" Variant="Variant.Outlined" Style="height: 100px; width: 100px;"> </MudAvatar>
+            </MudTd>
+            <MudTd DataLabel="Actions" Style="text-align: right">
+              
+                <MudMenu Label="Actions" Variant="Variant.Filled" DisableElevation="true" EndIcon="@Icons.Filled.KeyboardArrowDown" IconColor="Color.Secondary" Direction="Direction.Left" OffsetX="true">
+
+                    <MudMenuItem @onclick="@(() => InvokeModal(@context.ID))">Edit</MudMenuItem>
+                       
+                    <MudMenuItem @onclick="@(() => Delete(@context.ID))">Delete</MudMenuItem>
+                       
+                </MudMenu>
+               
+               
+            </MudTd>
+        </RowTemplate>
+        <PagerContent>
+            <Pager />
+        </PagerContent>
+    </MudTable>
+}

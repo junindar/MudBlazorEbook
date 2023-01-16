@@ -1,0 +1,87 @@
+﻿@layout ShoppingLayout
+@page "/BookSearch/{SearchParameter}"
+@using Color = MudBlazor.Color
+
+@if (!_loaded)
+{
+    <MudProgressCircular Color="Color.Primary" Indeterminate="true" />
+}
+else
+{
+
+    <SearchBox Style="margin-top: 60px;margin-bottom: 20px;" ></SearchBox>
+    @if (_bookList.Count == 0)
+    {
+
+        <NoResultBox SearchParameter="@SearchParameter" StyleParameter="margin-top: 100px;"></NoResultBox>
+        <div class="row" style="margin-top: 40px; margin-right: 200px;margin-left:200px">
+            <CardBook CategoryName="Teknologi"></CardBook>
+        </div>
+               
+    }
+    else
+    {
+
+        <MudDivider  style="margin-top: 60px; margin-right: 200px; margin-left: 200px; height: 6px;border:firebrick" />
+        <MudTable Hover="true" Elevation="25" Items="_bookList"  @bind-category="_book"  style="margin-top: 10px; margin-right: 200px;margin-left:200px">
+            <PagerContent>
+                <Pager />
+            </PagerContent>
+     
+            <RowTemplate>
+        
+                <MudTd DataLabel="Gambar">
+                    <MudLink Href="@($"BookDetail/{context.ID}")" Color="Color.Warning" Underline="Underline.None" Style="cursor: pointer;">
+                        <MudAvatar Image="@context.Gambar" Color="Color.Info" Variant="Variant.Outlined" Style="height: 100px; width: 100px;"> </MudAvatar>
+                    </MudLink>
+                </MudTd>
+
+      
+                <MudTd DataLabel="Judul">
+                    <MudLink Href="@($"BookDetail/{context.ID}")" Color="Color.Warning" Underline="Underline.None" Style="cursor: pointer;">
+                    <MudHighlighter Text="@context.Judul"/>
+                    </MudLink>
+                    <br>
+                    <MudHighlighter  Text="@context.Penulis" /><br>
+                </MudTd>
+                <MudTd DataLabel="Penulis">
+
+                    <MudHighlighter  Text="@context.Penerbit" /><br>
+                    <MudHighlighter  Text="@context.Category.Nama" />
+                </MudTd>
+   
+
+            </RowTemplate>
+            <PagerContent>
+                <Pager />
+            </PagerContent>
+        </MudTable>
+    }
+    
+}
+
+@*<style>
+    .search-no-result-text {
+        padding: 12px 0;
+    }
+    .search-exclamation-mark {
+        background: #c03;
+        min-width: 28px;
+        color: #fff;
+        font-weight: bold;
+        float: left;
+        min-height: 64px;
+        line-height: 64px;
+        font-size: 1.3rem;
+    }
+    .search-no-result-box {
+        border: 2px solid #c03;
+        border-radius: 5px;
+        text-align: center;
+        margin-top: 100px; margin-right: 200px;margin-left: 200px;
+    }
+    .page-title h1 {
+        font: normal 24px/36px 'eurostile';
+        color: #c03;
+    }
+</style>*@

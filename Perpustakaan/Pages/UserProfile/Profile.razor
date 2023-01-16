@@ -1,0 +1,67 @@
+﻿@using Color = MudBlazor.Color
+@using Align = MudBlazor.Align
+
+<MudGrid>
+    <MudItem xs="12" sm="4" md="3">
+        <MudCard Elevation="25">
+            <MudCardContent>
+                <div class="d-flex justify-center mb-4">
+                    <MudAvatar Image="@_profileModel.ProfilePicture" Style="height:250px; width:250px;"> </MudAvatar>
+                </div>
+                <MudText Typo="Typo.h6" Align="Align.Center">@_profileModel.Nama</MudText>
+                <MudText Align="Align.Center">@_profileModel.Username</MudText>
+            </MudCardContent>
+            <MudCardActions Class="d-flex justify-center">
+                <InputFile id="fileInput" OnChange="UploadFiles" hidden />
+                <MudButton HtmlTag="label"
+                           Variant="Variant.Text"
+                           Color="Color.Primary"
+                           Size="Size.Small"
+                           StartIcon="@Icons.Filled.CloudUpload"
+                           for="fileInput">
+                    Upload Image
+                </MudButton>
+                @if (!string.IsNullOrEmpty(@_profileModel.ProfilePicture))
+                {
+                    <MudButton Variant="Variant.Text"
+                           Color="Color.Error"
+                           StartIcon="@Icons.Filled.Delete"
+                           Size="Size.Small"
+                           OnClick="DeleteAsync">
+                        Delete Image
+                    </MudButton>
+                }
+            </MudCardActions>
+        </MudCard>
+    </MudItem>
+    <MudItem xs="12" sm="8" md="9">
+        <EditForm Model="@_profileModel" OnValidSubmit="UpdateProfileAsync">
+            <FluentValidationValidator @ref="_fluentValidationValidator" />
+            <MudCard Elevation="25">
+                <MudCardHeader>
+                    <CardHeaderContent>
+                        <MudText>Profile Details</MudText>
+                    </CardHeaderContent>
+                </MudCardHeader>
+                <MudCardContent>
+                    <MudGrid>
+                        <MudItem xs="12" md="6">
+                            <MudTextField @bind-Value="@_profileModel.Nama" For="@(() => _profileModel.Nama)" Label="Nama" Variant="Variant.Outlined" />
+                        </MudItem>
+                        <MudItem xs="12" md="6">
+                            <MudTextField @bind-Value="@_profileModel.Username" For="@(() => _profileModel.Username)" Label="Username" Variant="Variant.Outlined" Disabled=true style="color: azure !important;" />
+                        </MudItem>
+                        <MudItem xs="12" md="6">
+                            <MudTextField @bind-Value="@_profileModel.Role" For="@(() => _profileModel.Role)" Label="Role" Variant="Variant.Outlined" Disabled=true style="color: azure !important;" />
+                        </MudItem>
+                        
+                    
+                    </MudGrid>
+                </MudCardContent>
+                <MudCardActions Class="pb-4 pl-4">
+                    <MudButton Variant="Variant.Filled" Disabled="@(!Validated)" Color="Color.Primary" Class="ml-auto" ButtonType="ButtonType.Submit">Save Changes</MudButton>
+                </MudCardActions>
+            </MudCard>
+        </EditForm>
+    </MudItem>
+</MudGrid>

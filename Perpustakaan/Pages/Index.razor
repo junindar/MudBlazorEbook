@@ -1,0 +1,40 @@
+﻿@layout ShoppingLayout
+@page "/"
+@using Color = MudBlazor.Color
+
+<MudCarousel Class="mud-width-full" Style="height:420px;" ShowArrows="true" ShowBullets="false" 
+             EnableSwipeGesture="true" AutoCycle="true" TData="object">
+    <MudCarouselItem Transition="Transition.Fade" Color="Color.Primary">
+        <div class="d-flex" style="height:100%">
+            <MudAvatar Image="/images/Carousel/image1.jpeg" Square="true" Style="height:  100%; width:  100%; max-height: 100%"> </MudAvatar>
+        </div>
+    </MudCarouselItem>
+    <MudCarouselItem Transition="Transition.Fade" Color="@Color.Secondary">
+        <div class="d-flex" style="height:100%">
+            <MudAvatar Image="/images/Carousel/image2.jpeg" Square="true" Style="height:  100%; width:  100%; max-height: 100%"> </MudAvatar>
+        </div>
+    </MudCarouselItem>
+    <MudCarouselItem Transition="Transition.Fade">
+        <div class="d-flex" style="height:100%">
+            <MudAvatar Image="/images/Carousel/image3.jpeg" Square="true" Style="height:  100%; width:  100%; max-height: 100%"> </MudAvatar>
+        </div>
+    </MudCarouselItem>
+</MudCarousel>
+<SearchBox Style="margin-top: -90px;"></SearchBox>
+
+
+<div id="page-wrapper" style="margin-top: 40px; margin-right: 200px;margin-left:200px">
+    <div class="row">
+        <div class="col-lg-12">
+            <p style="display:inline-block;position:relative; right:-56%;">
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <CardBook IsShowTab="true" CategoryName="Teknologi"></CardBook>
+    </div>
+
+
+
+</div>

@@ -1,0 +1,43 @@
+﻿
+@*@using global::MudBlazor*@
+@inherits LayoutComponentBase
+@*@inject Microsoft.Extensions.Localization.IStringLocalizer<MainLayout> _localizer*@
+@using Color = MudBlazor.Color
+<MudRTLProvider >
+
+    <MudThemeProvider Theme="_currentTheme" />
+    <MudDialogProvider />
+    <MudSnackbarProvider />
+    
+   
+
+   
+    <AuthorizeView>
+        <Authorized>
+            <MudLayout>
+                <MainBody >
+                    @Body
+                </MainBody>
+            </MudLayout>
+        </Authorized>
+        <NotAuthorized>
+            <MudLayout>
+                <ShoppingBody>
+                    @Body
+                </ShoppingBody>
+            </MudLayout>
+        </NotAuthorized>
+    </AuthorizeView>
+   
+   
+</MudRTLProvider>
+<style>
+  
+    ::-webkit-scrollbar {
+        width: 1px;
+        height: 8px;
+        z-index: 1;
+    }
+
+   
+</style>

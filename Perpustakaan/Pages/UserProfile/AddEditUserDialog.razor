@@ -1,0 +1,51 @@
+﻿@using Color = MudBlazor.Color
+
+    <EditForm Model="@UserModel" OnValidSubmit="SaveAsync">
+    <FluentValidationValidator @ref="_fluentValidationValidator"/>
+        <MudDialog>
+            <TitleContent>
+                @{
+                    if (UserModel.ID == 0)
+                    {
+                        <MudText Typo="Typo.h6">
+                            <MudIcon Icon="@Icons.Material.Filled.Add" Class="mr-3 mb-n1" />
+                            Add User
+                        </MudText>
+                    }
+                    else
+                    {
+                        <MudText Typo="Typo.h6">
+                            <MudIcon Icon="@Icons.Material.Filled.Update" Class="mr-3 mb-n1" />
+                            Update User
+                        </MudText>
+                    }
+                }
+            </TitleContent>
+            <DialogContent>
+                <MudHidden Disabled For="@(() => UserModel.ID)" @bind-Value="UserModel.ID" Label="ID"/>
+                <MudTextField T="string" For="@(() => UserModel.Username)" @bind-Value="UserModel.Username" Label="Username" />
+                <MudTextField T="string" For="@(() => UserModel.Nama)" @bind-Value="UserModel.Nama" Label="Nama" />
+                <MudTextField T="string" For="@(() => UserModel.Password)" @bind-Value="UserModel.Password" InputType="InputType.Password" Label="Password" />
+                <MudSelect T="string" For="@(() => UserModel.Role)"  @bind-Value="UserModel.Role" Label="Role" AnchorOrigin="Origin.BottomCenter">
+                    <MudSelectItem Value="@("Admin")" />
+                    <MudSelectItem Value="@("Staff")" />
+                    <MudSelectItem Value="@("Normal User")" />
+                </MudSelect>
+                <MudCheckBox For="@(() => UserModel.Status)" @bind-Checked="@UserModel.Status" Label="Status"  Color="Color.Secondary"></MudCheckBox>
+             
+            </DialogContent>
+            <DialogActions>
+                <MudButton DisableElevation Variant="Variant.Filled" OnClick="Cancel">Cancel</MudButton>
+            @if (UserModel.ID != 0)
+                {
+                <MudButton DisableElevation Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Secondary">Update</MudButton>
+                }
+                else
+                {
+                <MudButton DisableElevation Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Success">Save</MudButton>
+                }
+            </DialogActions>
+        </MudDialog>
+    </EditForm>
+
+

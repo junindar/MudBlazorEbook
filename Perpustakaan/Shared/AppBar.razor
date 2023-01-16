@@ -1,0 +1,55 @@
+﻿@using Color = MudBlazor.Color
+
+
+  
+<MudAppBar Elevation="25">
+  <MudLink Href="/" Underline="Underline.None" Style="color: white !important">
+
+
+      <MudIcon Icon="@Icons.Custom.Brands.MudBlazor" Size="Size.Large"  />
+   </MudLink>
+   <MudLink Href="/" Underline="Underline.None"  Style="color: white !important">
+      
+       <MudText Typo="Typo.h6" Class="ml-4">Arsyitech</MudText>
+   </MudLink>
+ 
+
+    <AuthorizeView>
+       <Authorized>
+            <MudSpacer/>
+
+            <MudMenu Direction="Direction.Right" OffsetX="true" Dense="true" Class="mt-1 ml-4">
+                <ActivatorContent>
+                    <MudAvatar Image="@ImageDataUrl" Style="height: 50px; width: 50px;"> </MudAvatar>
+
+                </ActivatorContent>
+                <ChildContent>
+                    <UserCard Username="@Username" Name="@Name" ImageDataUrl="@ImageDataUrl" Class="mt-n2"/>
+                    <MudDivider Class="mb-2"/>
+                    <MudListItem Text="Home" Icon="@Icons.Material.Filled.Home" Href="/"/>
+                    <MudListItem Text="Account" Href="/account" Icon="@Icons.Material.Outlined.Person"/>
+                    <AuthorizeView Context="AdminCtx" Roles="Admin, Staff">
+                        <MudListItem Text="Administration" Href="/Dashboard" Icon="@Icons.Material.Outlined.AdminPanelSettings" />
+                    </AuthorizeView>
+                      
+                  
+                       
+                 
+                    <MudListItem Text="Logout" Icon="@Icons.Material.Filled.Logout" OnClick="Logout"/>
+
+                </ChildContent>
+            </MudMenu>
+       </Authorized>
+
+        <NotAuthorized>
+
+            <MudSpacer/>
+            <MudTooltip Text="Login">
+                <MudIconButton Icon="@Icons.Material.Filled.Login" Color="Color.Inherit" Href="/login"/>
+            </MudTooltip>
+        </NotAuthorized>
+    </AuthorizeView>
+
+   
+</MudAppBar>
+   
