@@ -1,15 +1,9 @@
 ﻿using System.Reflection;
 using AutoMapper;
-using DataService.Entities;
-using Perpustakaan.Model;
 
 namespace Perpustakaan.Extensions.AutoMapper
 {
 
-    
-   
-
-   
     public class MappingProfile : Profile
     {
         public MappingProfile()

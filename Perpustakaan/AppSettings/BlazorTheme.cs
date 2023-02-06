@@ -28,6 +28,7 @@ namespace Perpustakaan.AppSettings
                 DrawerText = "rgba(255,255,255, 0.50)",
                 AppbarBackground = "#373740",
                 AppbarText = "rgba(255,255,255, 0.70)",
+                TextDisabled  = "rgba(255,255,255, 0.70)",
                 TextPrimary = "rgba(255,255,255, 0.70)",
                 TextSecondary = "rgba(255,255,255, 0.50)",
                 ActionDefault = "#adadb1",

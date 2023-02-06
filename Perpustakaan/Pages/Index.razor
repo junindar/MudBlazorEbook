@@ -2,23 +2,21 @@
 @page "/"
 @using Color = MudBlazor.Color
 
-<MudCarousel Class="mud-width-full" Style="height:420px;" ShowArrows="true" ShowBullets="false" 
+<MudCarousel  Style="height:420px;" ShowArrows="true" ShowBullets="false" 
              EnableSwipeGesture="true" AutoCycle="true" TData="object">
     <MudCarouselItem Transition="Transition.Fade" Color="Color.Primary">
         <div class="d-flex" style="height:100%">
-            <MudAvatar Image="/images/Carousel/image1.jpeg" Square="true" Style="height:  100%; width:  100%; max-height: 100%"> </MudAvatar>
+            <MudAvatar Image="/images/Carousel/banner1.jpeg" Square="true" 
+                       Style="height:  100%; width:  100%; max-height: 100%"> </MudAvatar>
         </div>
     </MudCarouselItem>
     <MudCarouselItem Transition="Transition.Fade" Color="@Color.Secondary">
         <div class="d-flex" style="height:100%">
-            <MudAvatar Image="/images/Carousel/image2.jpeg" Square="true" Style="height:  100%; width:  100%; max-height: 100%"> </MudAvatar>
+            <MudAvatar Image="/images/Carousel/banner2.jpeg" Square="true" 
+                       Style="height:  100%; width:  100%; max-height: 100%"> </MudAvatar>
         </div>
     </MudCarouselItem>
-    <MudCarouselItem Transition="Transition.Fade">
-        <div class="d-flex" style="height:100%">
-            <MudAvatar Image="/images/Carousel/image3.jpeg" Square="true" Style="height:  100%; width:  100%; max-height: 100%"> </MudAvatar>
-        </div>
-    </MudCarouselItem>
+  
 </MudCarousel>
 <SearchBox Style="margin-top: -90px;"></SearchBox>
 

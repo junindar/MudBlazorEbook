@@ -1,6 +1,6 @@
 ﻿@page "/catalog/books"
 @using Color = MudBlazor.Color
-@attribute [Authorize(Roles = "Admin")]
+@attribute [Authorize(Roles = "Admin,Staff")]
 <style>
     .mud-table-container {
         overflow: auto;
@@ -21,13 +21,11 @@ else
 
                 <MudButton DisableElevation Variant="Variant.Filled" Color="Color.Primary" OnClick="(() => InvokeModal())" StartIcon="@Icons.Material.Filled.Add" IconColor="Color.Surface">Create</MudButton>
                   
-                <MudButton DisableElevation Variant="Variant.Filled" Color="Color.Primary"  StartIcon="@Icons.Material.Filled.FileUpload" IconColor="Color.Surface" Style="margin-left: 5px;">Import</MudButton>
-                   
+                 
 
                 <MudButton DisableElevation Variant="Variant.Filled"  StartIcon="@Icons.Material.Filled.Refresh"  OnClick="GetBooksAsync" IconColor="Color.Surface" Color="Color.Secondary" Style="margin-left: 5px;">Refresh</MudButton>
                  
-                <MudButton DisableElevation Variant="Variant.Filled"  StartIcon="@Icons.Custom.FileFormats.FileExcel" IconColor="Color.Secondary" Color="Color.Surface" Style="margin-left: 5px;">Export</MudButton>
-                   
+              
                
                   
             </div>

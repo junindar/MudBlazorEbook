@@ -5,6 +5,7 @@
         <MudTabPanel Text="Teknologi" @onclick="@(() => ShowBookCategoryAsync("Teknologi"))">
 
         </MudTabPanel>
+    
         <MudTabPanel Text="Agama" @onclick="@(() => ShowBookCategoryAsync("Agama"))">
 
         </MudTabPanel>
@@ -21,7 +22,6 @@
 @if (Books == null || !Books.Any())
 {
     <NoResultBox SearchParameter="@CategoryName" StyleParameter="margin-top: 10px;"></NoResultBox>
-
 }
 else
 {

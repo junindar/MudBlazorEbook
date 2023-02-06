@@ -1,5 +1,6 @@
 ﻿@page "/UserProfile/users"
 @using Color = MudBlazor.Color
+@attribute [Authorize(Roles = "Admin")]
 <style>
     .mud-table-container {
         overflow: auto;

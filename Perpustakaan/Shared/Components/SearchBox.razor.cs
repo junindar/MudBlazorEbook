@@ -8,6 +8,7 @@ namespace Perpustakaan.Shared.Components
     {
         [Parameter]
         public string Style { get; set; }
+       
         public SearchVM searchModel { get; set; } = new SearchVM();
         private async Task SearchAsync()
         {
@@ -19,7 +20,6 @@ namespace Perpustakaan.Shared.Components
             else
             {
                 _navigationManager.NavigateTo($"/BookSearch/{searchModel.SearchString}");
-                //StateHasChanged();
             }
 
         }

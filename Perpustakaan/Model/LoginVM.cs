@@ -5,11 +5,7 @@ namespace Perpustakaan.Model
 {
     public class SearchVM
     {
-      
         public string SearchString { get; set; }
-
-     
-
     }
     public class LoginVM
     {

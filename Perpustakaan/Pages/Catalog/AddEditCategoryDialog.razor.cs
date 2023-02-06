@@ -19,8 +19,6 @@ namespace Perpustakaan.Pages.Catalog
         public IMapper _mapper { get; set; }
 
         [Parameter] public CategoryVM CategoryModel { get; set; } = new();
-
-
         [CascadingParameter] private MudDialogInstance MudDialog { get; set; }
 
         private FluentValidationValidator _fluentValidationValidator;
@@ -28,17 +26,13 @@ namespace Perpustakaan.Pages.Catalog
 
         public void Cancel()
         {
-
             MudDialog.Cancel();
         }
-        protected override async Task OnInitializedAsync()
-        {
-            await LoadDataAsync();
+        //protected override async Task OnInitializedAsync()
+        //{
+        //    await LoadDataAsync();
 
-        }
-
-
-
+        //}
         private async Task SaveAsync()
         {
             try
@@ -61,10 +55,10 @@ namespace Perpustakaan.Pages.Catalog
 
         }
 
-        private async Task LoadDataAsync()
-        {
+        //private async Task LoadDataAsync()
+        //{
 
-            await Task.CompletedTask;
-        }
+        //    await Task.CompletedTask;
+        //}
     }
 }

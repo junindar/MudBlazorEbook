@@ -17,13 +17,20 @@ namespace DataService.Service
       
         public async Task<List<Category>> GetAllAsNoTrackingAsync()
         {
-            return await _categoryRepository.TableNoTracking().ToListAsync();
+            var result = await _categoryRepository.TableNoTracking().ToListAsync();
+            await ClearTrackerAsync();
+            return result;
+        }
+        public async Task ClearTrackerAsync()
+        {
+            await Task.Run(() => _categoryRepository.ClearTracker());
         }
 
         public async Task<List<Category>> GetAllAsync()
         {
-           return await _categoryRepository.Table().ToListAsync();
-          
+           var result= await _categoryRepository.Table().ToListAsync();
+           await ClearTrackerAsync();
+           return result;
         }
 
 

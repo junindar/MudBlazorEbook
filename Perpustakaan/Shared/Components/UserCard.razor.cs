@@ -15,7 +15,7 @@ namespace Perpustakaan.Shared.Components
         [Parameter] public string ImageDataUrl { get; set; }
         [Parameter] public string Name { get; set; }
         [Parameter] public string Username { get; set; }
-       // [Inject] public IUserService UserService { get; set; }
+
         ClaimsPrincipal user;
 
         [CascadingParameter]
@@ -39,11 +39,10 @@ namespace Perpustakaan.Shared.Components
                 if (user.Identity?.IsAuthenticated == false) return;
 
 
-               // var CurrentUserId = Convert.ToInt32(user.GetUserId());
                 Name = user.GetName();
 
                 Username = user.GetUsername();
-               // var objUser = await UserService.GetByIdAsync(CurrentUserId);
+
 
                 ImageDataUrl = string.IsNullOrEmpty(user.GetImageUrl()) ? "images/profilepicture/default.jpg" : user.GetImageUrl();
                 if (string.IsNullOrEmpty(ImageDataUrl))

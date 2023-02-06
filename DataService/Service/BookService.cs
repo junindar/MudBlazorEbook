@@ -12,6 +12,8 @@ namespace DataService.Service
 {
     public class BookService : IBookService
     {
+        //Check file exist in folder
+       
         private readonly IRepository<Book> _bookRepository;
         public BookService(IRepository<Book> bookRepository)
         {

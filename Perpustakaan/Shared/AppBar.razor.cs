@@ -20,14 +20,12 @@ namespace Perpustakaan.Shared
         [CascadingParameter]
         private Task<AuthenticationState> authenticationStateTask { get; set; }
 
-        private int CurrentUserId { get; set; }
+       
         private string ImageDataUrl { get; set; }
         private string Name { get; set; }
         private string Username { get; set; }
 
-      //  [Inject] public IUserService UserService { get; set; }
-
-       
+    
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             if (firstRender)
@@ -39,20 +37,19 @@ namespace Perpustakaan.Shared
         private async Task LoadDataAsync()
         {
             user = (await authenticationStateTask).User;
-         
+
             if (user == null) return;
             if (user.Identity?.IsAuthenticated == true)
             {
-                if (CurrentUserId==0)
-                {
-                    CurrentUserId = Convert.ToInt32(user.GetUserId());
-                    Name = user.GetName();
 
-                    Username = user.GetUsername();
-                    ImageDataUrl = string.IsNullOrEmpty(user.GetImageUrl()) ? "images/profilepicture/default.jpg" : user.GetImageUrl();
-                    StateHasChanged();
-                   
-                }
+              
+                Name = user.GetName();
+
+                Username = user.GetUsername();
+                ImageDataUrl = string.IsNullOrEmpty(user.GetImageUrl()) ? "images/profilepicture/default.jpg" : user.GetImageUrl();
+                StateHasChanged();
+
+
             }
         }
 

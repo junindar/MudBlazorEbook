@@ -1,18 +1,16 @@
 ﻿@using Color = MudBlazor.Color
 <EditForm Model="@searchModel" OnValidSubmit="SearchAsync">
-
-
-
     <div class="home-page-filters-wrapper" style="@Style">
         <div class="home-page-filters">
             <div class="home-page-filter-button">
                 <button type="submit" class="search-button">Search</button>
             </div>
-            <InputText @bind-Value="searchModel.SearchString" type="text" name="q" id="q" class="home-page-filter-input-search" placeholder="Keyword" />
+            <InputText @bind-Value="searchModel.SearchString" type="text" name="q" id="q" 
+                       class="home-page-filter-input-search" placeholder="Keyword" />
+            
+         
         </div>
     </div>
-
-
 </EditForm>
 
 <style>

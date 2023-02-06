@@ -1,11 +1,12 @@
 ﻿@page "/catalog/categories"
 @using Color = MudBlazor.Color
+@attribute [Authorize(Roles = "Admin,Staff")]
 <style>
     .mud-table-container {
         overflow: auto;
     }
 </style>
-<BodyTitle Title="Categories" Description="Manage Brands." />
+<BodyTitle Title="Kategori" Description="Manage Category." />
 
 @if (!_loaded)
 {
@@ -17,16 +18,10 @@ else
     <MudTable Hover="true" Elevation="25" Items="_categoryList" Filter="new Func<CategoryVM, bool>(Filter)" @bind-category="_category">
         <ToolBarContent>
             <div class="justify-center mud-text-align-center">
-
                 <MudButton DisableElevation Variant="Variant.Filled" Color="Color.Primary" OnClick="(() => InvokeModal())" StartIcon="@Icons.Material.Filled.Add" IconColor="Color.Surface">Create</MudButton>
-                  
-               @* <MudButton DisableElevation Variant="Variant.Filled" Color="Color.Primary"  StartIcon="@Icons.Material.Filled.FileUpload" IconColor="Color.Surface" Style="margin-left: 5px;">Import</MudButton>*@
-                   
-
                 <MudButton DisableElevation Variant="Variant.Filled"  StartIcon="@Icons.Material.Filled.Refresh"  OnClick="GetCategoriesAsync" IconColor="Color.Surface" Color="Color.Secondary" Style="margin-left: 5px;">Refresh</MudButton>
                  
-                @*<MudButton DisableElevation Variant="Variant.Filled"  StartIcon="@Icons.Custom.FileFormats.FileExcel" IconColor="Color.Secondary" Color="Color.Surface" Style="margin-left: 5px;">Export</MudButton>*@
-                   
+                
                
                   
             </div>

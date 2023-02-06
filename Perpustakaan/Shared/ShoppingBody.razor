@@ -1,9 +1,7 @@
 ﻿@using Color = MudBlazor.Color
 
 <AppBar/>
-@*<MudDrawer  Elevation="25" ClipMode="DrawerClipMode.Always">
-    <NavMenu />
-</MudDrawer>*@
+
 <MudMainContent>
     <MudContainer MaxWidth="MaxWidth.False" Class="mt-4">
         @ChildContent
@@ -11,7 +9,8 @@
     </MudContainer>
 </MudMainContent>
 <div class="footerUpperImage">
-    <img class="img-responsive lozad" data-src="/images/footer-win.png" alt="footer Upper Image" src="/images/footer-win.png" data-loaded="true">
+   @* <img class="img-responsive lozad" data-src="/images/footer.png" alt="footer Upper Image" src="/images/footer.png" data-loaded="true">*@
+   <MudImage  class="img-responsive" data-src="/images/footer.png" alt="footer Upper Image" src="/images/footer.png" data-loaded="true"/>
 </div>
 <style>
     .footerUpperImage {
